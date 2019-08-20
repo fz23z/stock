@@ -1,9 +1,10 @@
-package com.dev.zhouhua.practise.factoryMode;
+package com.dev.zhouhua.practise.factorymode;
 
 import org.springframework.util.Assert;
 
 import lombok.Getter;
 import lombok.Setter;
+
 
 /**
  * @author jiangyanyan

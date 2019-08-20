@@ -1,4 +1,4 @@
-package com.dev.zhouhua.practise.factoryMode;
+package com.dev.zhouhua.practise.factorymode;
 
 /**
  * @author jiangyanyan
