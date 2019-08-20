@@ -56,7 +56,7 @@ public class DingTouService {
             return dateTime.isBeforeNow();
         }
 
-        // 多次定投
+        // 多次定投 m
         DateTime dateTime = new DateTime(rule.getLastTime());
 
         if (rule.getPeriod() == DingtouPeriod.MONTH) {
