@@ -73,7 +73,7 @@ public class DingTouService {
     public Result dingtou(DingtouInfo info) {
 
         log.info("user {} buy {} {}", info.getUserId(), info.getStock().getName(), info.getRule().getMoney());
-        return Result.instance();
+        return Result.success();
     }
 
 }

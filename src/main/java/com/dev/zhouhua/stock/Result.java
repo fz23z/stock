@@ -28,52 +28,44 @@ public class Result <T> extends BaseDomain {
         this.setData(data);
     }
 
-    private Result(String code, String msg) {
-        this.code = ResultCode.SUCCESS.getCode();
-        this.msg = ResultCode.SUCCESS.getMsg();
-        this.setCode(code);
-        this.setMsg(msg);
+    private Result(ResultCode errorCode) {
+        this.code = errorCode.getCode();
+        this.msg = errorCode.getMsg();
     }
 
-    private Result(String code, String msg, T data) {
-        this.code = ResultCode.SUCCESS.getCode();
-        this.msg = ResultCode.SUCCESS.getMsg();
+
+    private Result(ResultCode errorCode, T data) {
+        this.code = errorCode.getCode();
+        this.msg = errorCode.getMsg();
         this.setCode(code);
         this.setMsg(msg);
         this.setData(data);
     }
 
-    public Result<T> setError(String code, String msg) {
-        this.setCode(code);
-        this.setMsg(msg);
-        return this;
-    }
 
-    public Result<T> setError(ResultCode errorCode) {
-        this.setCode(errorCode.getCode());
-        this.setMsg(errorCode.getMsg());
-        return this;
-    }
 
     public boolean isSuccess() {
         return StringUtils.equals(this.getCode(), ResultCode.SUCCESS.getCode());
     }
 
-    public static Result instance() {
+    public static Result success() {
         return new Result();
     }
 
-    public static <T> Result instance(T data) {
+    public static <T> Result success(T data) {
         return new Result(data);
     }
 
-    public static <T> Result instance(String code, String msg) {
-        return new Result(code, msg);
+
+    public static <T> Result fail(ResultCode resultCode) {
+        return new Result(resultCode);
     }
 
-    public static <T> Result instance(String code, String msg, T data) {
-        return new Result(code, msg, data);
+    public static <T> Result fail(ResultCode resultCode, T data) {
+        return new Result(resultCode, data);
     }
+
+
 
     public Map<String,Object> toJsonMap(){
         Map<String,Object> map = new HashMap();
