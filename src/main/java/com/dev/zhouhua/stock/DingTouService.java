@@ -24,6 +24,7 @@ public class DingTouService {
      */
     public List<DingtouInfo> loadData() {
 
+        //******** mock ******/
         Date date = null;
         try {
             date = DateUtils.parseDate("2019-07-27 00:00:00", "yyyy-MM-dd hh:mm:ss");
@@ -37,40 +38,23 @@ public class DingTouService {
             DingtouRule.builder().money(new BigDecimal(100)).period(DingtouPeriod.DAY).startTime(date).build();
 
         List<DingtouInfo> infoList =
-            Lists.newArrayList(DingtouInfo.builder().rule(rule1).stock(stock1).userId("123").build());
+            Lists.newArrayList(DingtouInfo.builder().rule(rule1).stock(stock1).userId("123").doneTime(0).nextTime(date).build());
+        //******** mock ******/
+
+        //todo 从db捞数据，捞取逻辑：判断nextTime距当前时间小于1分钟的数据 减少处理的数据量
 
         return infoList;
 
     }
 
-    public boolean isTimeUp(DingtouInfo info) {
-        if (null == info || null == info.getRule()) {
-            return false;
-        }
 
-        DingtouRule rule = info.getRule();
-
-        // 第一次定投
-        if (null == rule.getLastTime()) {
-            DateTime dateTime = new DateTime(rule.getStartTime());
-            return dateTime.isBeforeNow();
-        }
-
-        // 多次定投 m
-        DateTime dateTime = new DateTime(rule.getLastTime());
-
-        if (rule.getPeriod() == DingtouPeriod.MONTH) {
-            dateTime.plusMonths(1);
-        } else if (rule.getPeriod() == DingtouPeriod.WEEK) {
-            dateTime.plusWeeks(1);
-        } else {
-            dateTime.plusDays(1);
-        }
-
-        return dateTime.isBeforeNow();
-    }
 
     public Result dingtou(DingtouInfo info) {
+        //todo 执行定投逻辑 db中生成定投流水记录
+
+        info.setDoneTime(info.getDoneTime()+1);
+        info.setNextTime(info.calNextTime());
+
 
         log.info("user {} buy {} {}", info.getUserId(), info.getStock().getName(), info.getRule().getMoney());
         return Result.success();

@@ -6,7 +6,7 @@ import java.util.List;
  * @author jiangyanyan
  * @since 2019/7/28 下午1:36
  */
-public abstract class AbstractTask<T> implements Task {
+public abstract class AbstractDataProcessTask<T> implements Task {
 
     public void doTask() {
         List list = loadData();

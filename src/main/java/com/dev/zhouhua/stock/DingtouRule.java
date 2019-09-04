@@ -19,9 +19,6 @@ public class DingtouRule {
 
     private Date startTime;
 
-    private Date lastTime;
-
-
 
 
 

@@ -1,7 +1,9 @@
 package com.dev.zhouhua.stock;
 
-import java.util.List;
-
+/**
+ * 任务接口
+ * @param <T>
+ */
 public interface Task<T> {
 
 

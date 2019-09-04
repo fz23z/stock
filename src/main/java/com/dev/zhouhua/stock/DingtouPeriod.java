@@ -1,5 +1,8 @@
 package com.dev.zhouhua.stock;
 
+import lombok.Getter;
+
+@Getter
 public enum DingtouPeriod {
 
     /**
@@ -26,11 +29,4 @@ public enum DingtouPeriod {
         this.desc = desc;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
 }
